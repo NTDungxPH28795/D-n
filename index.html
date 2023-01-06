@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="./512x512bb.jpg" alt="">
+            </div>
+            <form class="search">
+                <input type="text" required placeholder="Bạn muốn tìm truyện gì">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <div class="user">
+                <button class="user-btn">Đăng Ký</button>
+                <button class="user-btn">Đăng Nhập</button>
+            </div>
+        </div>
+        <div class="header-bot">
+            <ul>
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="category.html">Thể Loại</a></li>
+                <li><a href="history.html">Lịch Sử</a></li>
+                <li><a href="follow.html">Theo Dõi</a></li>
+                <li><a href="https://www.facebook.com/groups/438911163131883">Thảo Luận</a></li>
+                <li><a href="https://www.facebook.com/truyenqq.page">Fanpage</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="intro">
+            <p class="intro-title">Chào mừng các bạn đến với Mangax.com</p>
+            <p>Tham gia sự kiện mới <a href="#">Tại đây</a></p>
+            <p>Nếu web/ảnh load chậm, <a href="#">Tải 1.1.1.1 tại đây</a> để cải thiện tốc độ</p>
+        </div>
+        <script>
+            // Khai báo mảng chứa các phần tử là ảnh của slideshow
+            var arrImage = [];
+            arrImage[0] = "https://mir-s3-cdn-cf.behance.net/project_modules/1400/d11a42105464265.6265810ed2a89.png";
+            arrImage[1] = "https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/d3a8dc102808543.6142d09f503b0.png";
+            arrImage[2] = "https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/8467c6115417089.60ec3e60291bc.png";
+            arrImage[3] = "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/da5caf102808543.5ffa7e96661a1.png";
+            // Khởi tạo đếm
+            var count = 0;
+            // Khởi tạo thời gian
+            var time;
+
+            // Hàm hiển thị ảnh đầu tiên
+            function First() {
+                document.getElementById("image-slider").src = arrImage[0];
+            }
+
+            // Hàm hiển thị ảnh cuối cùng
+            function Last() {
+                document.getElementById("image-slider").src = arrImage[arrImage.length - 1];
+            }
+
+            // Hàm hiển thị ảnh trước
+            function Pre() {
+                --count;
+                if (count == -1) {
+                    count = (arrImage.length - 1);
+                }
+                document.getElementById("image-slider").src = arrImage[count];
+            }
+
+            // Hàm hiển thị ảnh sau
+            function Next() {
+                ++count;
+                if (count == (arrImage.length)) {
+                    count = 0;
+                }
+                document.getElementById("image-slider").src = arrImage[count];
+            }
+
+            // Hàm chạy tự động slideshow
+            function AutoRun() {
+                ++count;
+                if (count == (arrImage.length)) {
+                    count = 0;
+                }
+                document.getElementById("image-slider").src = arrImage[count];
+                time = setTimeout(AutoRun, 2000);
+            }
+
+            // Hàm dừng (tắt chạy tự động) slideshow
+            function Stop() {
+                clearTimeout(time);
+            }
+
+            // Chạy tự động ngay khi mở cửa sổ(comment lại nếu không muốn tự động chạy ngay khi mở cửa sổ)
+            window.onload = function () {
+                time = setTimeout(AutoRun, 3000)
+            }
+        </script>
+        </head>
+
+
+        <body>
+            <div class="container">
+                <!-- Ảnh Slide đầu tiên -->
+                <div class="slide-img">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/cc259695730787.5f22e5ac829d5.png"
+                        id="image-slider">
+                </div>
+                <!-- Nút Slide -->
+                <div class="slide-btn">
+                    <!-- First() -->
+                    <!-- Sau mỗi onclick là một hàm tương ứng như cái tên -->
+                    <div class="slide-btn_icon" onclick="First()">
+                        <i class="fa-solid fa-angles-left"></i>
+                        <input type="button" value="First">
+                    </div>
+                    <!-- Pre() -->
+                    <div class="slide-btn_icon" onclick="Pre()">
+                        <i class="fa-solid fa-angle-left"></i>
+                        <input type="button" value="Pre">
+                    </div>
+                    <!-- Stop() -->
+                    <div class="slide-btn_icon" onclick="Stop()">
+                        <i class="fa-solid fa-pause"></i>
+                        <input type="button" value="Stop">
+                    </div>
+                    <!-- Auto() -->
+                    <div class="slide-btn_icon" onclick="Auto()">
+                        <i class="fa-solid fa-play"></i>
+                        <input type="button" value="Auto">
+                    </div>
+                    <!-- Next() -->
+                    <div class="slide-btn_icon" onclick="Next()">
+                        <i class="fa-solid fa-angle-right"></i>
+                        <input type="button" value="Next">
+                    </div>
+                    <!-- Last() -->
+                    <div class="slide-btn_icon" onclick="Last()">
+                        <i class="fa-solid fa-angles-right"></i>
+                        <input type="button" value="Last">
+                    </div>
+                </div>
+            </div>
+            <div class="manga">
+                <p class="manga-title">Truyện Đề Cử <i class="fa-solid fa-angles-right"></i></p>
+                <div class="manga-main">
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/dua-vao-dai-lao-on-dinh-vi-tri-c-trong-nam-doan_1622258972.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/ton-tai-nhu-mot-nu-hau_1597309417.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/co-cong-chua-nho-cua-ke-phan-dien_1656914513.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/cuoc-song-thu-hai-cua-nha-san-xuat_1669090436.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/lam-gi-co-chuyen-tinh-hai-huoc-giua-ban-thuo-nho-duoc_1656498320.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/he-thong-ganh-con-manh-nhat_1667117666.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                </div>
+                <div class="manga-main">
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/ban-gai-zombie-cua-toi_1560569977.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/jichou-shinai-motoyuusha-no-tsuyokute-tanoshii-new-game_1535099019.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/initial-d_1637852355.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/vo-toi-va-toi-thong-tri-tam-gioi_1665299582.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/hyouryuu-net-cafe_1524725729.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                    <div class="manga-box">
+                        <div class="manga-box-img">
+                            <img src="https://i.truyenvua.com/ebook/190x247/isekai-de-tochi-o-katte-noujou-o-tsukurou_1561515994.jpg?gf=hdfgdfg&mobile=2"
+                                alt="">
+                        </div>
+                        <p class="box-name">Làm gì có truyện tình..</p>
+                        <p class="chapter">Chap 22</p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="logo">
+                        <img src="./512x512bb.jpg" alt="">
+                    </div>
+                    <div class="footer-contact">
+                        <p class="footer-contact-title">Manga</p>
+                        <ul>
+                            <li><a href="#">Chuyển Sinh</a></li>
+                            <li><a href="#">Manhwa</a></li>
+                            <li><a href="#">Ngôn Tình</a></li>
+                            <li><a href="#">Cổ Đại</a></li>
+                            <li><a href="#">Xuyên Không</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <p class="footer-contact-title">Đối Tác</p>
+                        <ul>
+                            <li><a href="#">Truyentranh86</a></li>
+                            <li><a href="#">Truyenqq</a></li>
+                            <!-- <li><a href="#"></a></li> -->
+                            <!-- <li><a href="#">Cổ Đại</a></li> -->
+                            <!-- <li><a href="#">Xuyên Không</a></li> -->
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <p class="footer-contact-title">Liên Hệ</p>
+                        <ul>
+                            <li><a href="#">Fanpage</a></li>
+                            <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fa-solid fa-envelope"></i> Email</a></li>
+                            <!-- <li><a href="#"></a></li> -->
+                            <!-- <li><a href="#">Xuyên Không</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>
